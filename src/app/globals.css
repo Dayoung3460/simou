@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  /* 컬러 — 아주 옅은 웜 화이트 배경 + 차분한 그레이/블랙, 포인트 컬러 없음 */
+  --color-cream: #fdfcfa;
+  --color-ink: #1a1a1a;
+  --color-body: #4a4a4a;
+  --color-muted: #8a8580;
+  --color-line: #e8e5e0;
+
+  /* 타이포 — 본문 Pretendard(동적 서브셋 CDN), 디스플레이 Cormorant Garamond */
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+  --font-serif: var(--font-cormorant), Georgia, "Times New Roman", serif;
+}
+
+:root {
+  /* 사진 무드 유지를 위해 라이트 테마 고정 */
+  color-scheme: light;
+}
+
+body {
+  @apply bg-cream text-body font-sans;
+  letter-spacing: -0.01em;
+  /* 한글이 어절 중간에서 줄바꿈되지 않도록 */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+::selection {
+  background-color: var(--color-line);
+  color: var(--color-ink);
+}
