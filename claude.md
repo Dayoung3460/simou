@@ -21,6 +21,7 @@ Photos are the star. Keep the UI minimal so it never competes with the photos, a
 ### Typography
 
 - Logo: use the real image asset `public/images/logo.png` (transparent, ink-colored wordmark; static import in header/menu/footer at `h-4 w-auto`~`h-5`). Don't render the logo as text. Source: `img/logo.jpeg`
+- Square brand mark (calla lily + SIMOU): derived from `img/logo3.jpeg` → home statement (`public/images/brand-mark.jpg`), iOS icon (`src/app/apple-icon.png`), OG image (`public/og.png`). `img/logo2.jpeg` is the white-background variant, currently unused
 - English display text (section titles): Cormorant Garamond (`font-serif`), font-light, tracking `0.2~0.4em`, uppercase
 - Korean/body text: Pretendard (`font-sans`, jsdelivr dynamic subset CDN). Default body letter-spacing `-0.01em`
 - Section title pattern: English serif caps + Korean subtitle (`text-sm text-muted`) — use the `SectionTitle` component

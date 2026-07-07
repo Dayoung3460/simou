@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/components/home/hero";
 import SelectedWorks from "@/components/home/selected-works";
@@ -5,6 +6,7 @@ import Reveal from "@/components/reveal";
 import SectionTitle from "@/components/section-title";
 import { openEvent } from "@/data/products";
 import { site } from "@/data/site";
+import brandMark from "../../public/images/brand-mark.jpg";
 
 export default function HomePage() {
   return (
@@ -14,7 +16,13 @@ export default function HomePage() {
       {/* 브랜드 스테이트먼트 */}
       <section className="px-5 py-24 md:py-36">
         <Reveal className="mx-auto max-w-xl text-center">
-          <p className="font-serif text-sm tracking-[0.4em] text-muted">SIMOU</p>
+          <Image
+            src={brandMark}
+            alt="카라 릴리 위에 얹힌 SIMOU 브랜드 마크"
+            placeholder="blur"
+            sizes="(min-width: 768px) 128px, 104px"
+            className="mx-auto h-26 w-26 md:h-32 md:w-32"
+          />
           <div className="mt-8 space-y-5 text-[15px] leading-8 text-body md:text-base md:leading-9">
             <p>{site.philosophy[0]}</p>
             <p>{site.philosophy[1]}</p>
