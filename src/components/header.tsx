@@ -37,7 +37,9 @@ export default function Header() {
             src={logo}
             alt="SIMOU 심오유"
             priority
-            className="h-4 w-auto md:h-5"
+            className={`h-4 w-auto transition duration-300 md:h-5 ${
+              transparent ? "brightness-0 invert" : ""
+            }`}
           />
         </Link>
 
@@ -47,9 +49,11 @@ export default function Header() {
               key={item.href}
               href={item.href}
               className={`text-[13px] uppercase tracking-[0.18em] transition-colors ${
-                pathname.startsWith(item.href)
-                  ? "text-ink"
-                  : "text-muted hover:text-ink"
+                transparent
+                  ? "text-white/85 hover:text-white"
+                  : pathname.startsWith(item.href)
+                    ? "text-ink"
+                    : "text-muted hover:text-ink"
               }`}
             >
               {item.label}
@@ -57,7 +61,7 @@ export default function Header() {
           ))}
         </nav>
 
-        <MobileMenu />
+        <MobileMenu light={transparent} />
       </div>
     </header>
   );

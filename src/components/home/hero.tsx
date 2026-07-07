@@ -15,10 +15,10 @@ export default function Hero() {
         className="object-cover"
       />
 
-      {/* 사진 위 텍스트 가독성용 그라데이션 — 실제 사진 밝기에 따라 강도 조절 */}
+      {/* Gradient for text legibility over the photo — tune intensity to the actual photo's brightness */}
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-cream/35 to-transparent"
+        className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ink/40 to-transparent"
       />
       <div
         aria-hidden

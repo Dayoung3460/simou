@@ -7,9 +7,11 @@ import { useEffect, useState } from "react";
 import { site } from "@/data/site";
 import logo from "../../public/images/logo.png";
 
-export default function MobileMenu() {
+export default function MobileMenu({ light = false }: { light?: boolean }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  // White hamburger bars over the transparent header on the home hero
+  const bar = light ? "bg-white" : "bg-ink";
 
   // Auto-close on route change
   useEffect(() => {
@@ -33,8 +35,12 @@ export default function MobileMenu() {
         className="-mr-2 flex h-11 w-11 items-center justify-center"
       >
         <span className="relative block h-2.5 w-6">
-          <span className="absolute left-0 top-0 h-px w-full bg-ink" />
-          <span className="absolute bottom-0 left-0 h-px w-full bg-ink" />
+          <span
+            className={`absolute left-0 top-0 h-px w-full transition-colors duration-300 ${bar}`}
+          />
+          <span
+            className={`absolute bottom-0 left-0 h-px w-full transition-colors duration-300 ${bar}`}
+          />
         </span>
       </button>
 
