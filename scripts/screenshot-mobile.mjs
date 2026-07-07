@@ -45,6 +45,8 @@ const AUTOSCROLL = `(async () => {
 const PAGES = [
   ["home", "/", AUTOSCROLL, true],
   ["home-menu", "/", `document.querySelector('button[aria-label="메뉴 열기"]')?.click()`, false],
+  // Menu over a solid (backdrop-blur) header — catches fixed-overlay containing-block regressions
+  ["pricing-menu", "/pricing", `document.querySelector('button[aria-label="메뉴 열기"]')?.click()`, false],
   ["portfolio", "/portfolio", AUTOSCROLL, true],
   ["portfolio-lightbox", "/portfolio", `document.querySelector('button.cursor-zoom-in')?.click()`, false],
   ["portfolio-campus", "/portfolio?category=campus", AUTOSCROLL, true],
