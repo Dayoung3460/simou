@@ -21,7 +21,7 @@ export default function HomePage() {
             alt="카라 릴리 위에 얹힌 SIMOU 브랜드 마크"
             placeholder="blur"
             sizes="(min-width: 768px) 128px, 104px"
-            className="mx-auto h-26 w-26 md:h-32 md:w-32"
+            className="mx-auto h-26 w-26 rounded-full md:h-32 md:w-32"
           />
           <div className="mt-8 space-y-5 text-[15px] leading-8 text-body md:text-base md:leading-9">
             <p>{site.philosophy[0]}</p>
