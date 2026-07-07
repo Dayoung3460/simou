@@ -48,7 +48,7 @@ Overwrite the existing file under `public/images/...` with the same filename —
 | Logo | `public/images/logo.png` (transparent PNG) | background removed from `img/logo.jpeg` |
 | Brand mark (home statement) | `public/images/brand-mark.jpg` | `img/logo3.jpeg` |
 | iOS home-screen icon | `src/app/apple-icon.png` (180×180) | `img/logo3.jpeg` |
-| OG share image | `public/og.png` (1200×630) | center-cropped from `img/logo3.jpeg` |
+| OG share image | `public/og.png` (1200×630) | centre-cropped from `img/logo3.jpeg` |
 
 ## Pre-Launch Checklist
 
