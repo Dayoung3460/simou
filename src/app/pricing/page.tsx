@@ -41,7 +41,7 @@ export default function PricingPage() {
           <p className="mt-4 text-[13px] text-muted">{openEvent.bonus}</p>
         </Reveal>
 
-        {/* 상품 공통 안내 */}
+        {/* Shared product notes */}
         <div className="mx-auto mt-10 max-w-lg space-y-2 text-center">
           {productNotes.map((note) => (
             <p key={note} className="text-[13px] leading-6 text-muted">
@@ -50,14 +50,14 @@ export default function PricingPage() {
           ))}
         </div>
 
-        {/* 상품 3종 */}
+        {/* Three product types */}
         <div className="mt-16 grid gap-12 md:mt-20 md:grid-cols-3 md:gap-8">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
 
-        {/* 추가 옵션 */}
+        {/* Extra options */}
         <section className="mt-20 border-t border-line pt-10 md:mt-24">
           <h2 className="text-center font-serif text-xl font-light tracking-[0.25em] text-ink">
             OPTION
@@ -71,7 +71,7 @@ export default function PricingPage() {
           <p className="mt-5 text-center text-[13px] text-muted">{travelFee}</p>
         </section>
 
-        {/* 안내사항 */}
+        {/* Notices */}
         <section className="mx-auto mt-20 max-w-2xl md:mt-24">
           <h2 className="text-center font-serif text-xl font-light tracking-[0.25em] text-ink">
             NOTICE

@@ -1,9 +1,9 @@
 /**
- * [사용 중지] 실제 사진이 들어오기 전 placeholder 시대에 쓰던 생성 스크립트.
+ * [Retired] Generator script from the placeholder era, before real photos arrived.
  *
- * ⚠️ 지금 실행하면 public/images/hero, public/images/about, public/og.png의
- * "실제 사진"을 그라데이션 placeholder로 덮어쓴다. 실행하지 말 것.
- * (참고용으로만 보존. npm scripts에서도 제거됨 — 2026-07-07)
+ * ⚠️ Running this now overwrites the "real photos" in public/images/hero,
+ * public/images/about, and public/og.png with gradient placeholders. Don't run it.
+ * (Kept for reference only. Also removed from npm scripts — 2026-07-07)
  */
 import sharp from "sharp";
 import { mkdir } from "node:fs/promises";
@@ -13,7 +13,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const out = (...p) => path.join(root, "public", ...p);
 
-// 카테고리별 웜톤 그라데이션 팔레트 (위 → 아래)
+// Warm-tone gradient palette per category (top → bottom)
 const PORTFOLIO = {
   forest: [
     ["#a3aa9a", "#7f8676"],
@@ -47,7 +47,7 @@ const PORTFOLIO = {
   ],
 };
 
-// 매소너리가 자연스럽도록 세로 비율을 섞는다
+// Mix portrait ratios so the masonry grid looks natural
 const RATIOS = [
   [1200, 1600], // 3:4
   [1200, 1800], // 2:3
@@ -77,7 +77,7 @@ async function writeJpeg(svg, file) {
   console.log("✓", path.relative(root, file));
 }
 
-// 포트폴리오: 카테고리별 4장
+// Portfolio: 4 photos per category
 for (const [category, palettes] of Object.entries(PORTFOLIO)) {
   const dir = out("images", "portfolio", category);
   await mkdir(dir, { recursive: true });
@@ -88,7 +88,7 @@ for (const [category, palettes] of Object.entries(PORTFOLIO)) {
   }
 }
 
-// 히어로 (가로형)
+// Hero (landscape)
 await mkdir(out("images", "hero"), { recursive: true });
 await writeJpeg(gradientSvg(2400, 1500, ["#b6b0a2", "#8f887a"]), out("images", "hero", "hero-01.jpg"));
 await writeJpeg(gradientSvg(2400, 1600, ["#a9aea6", "#82877f"]), out("images", "hero", "hero-02.jpg"));
@@ -98,7 +98,7 @@ await mkdir(out("images", "about"), { recursive: true });
 await writeJpeg(gradientSvg(1400, 1750, ["#c2b9a9", "#9c9383"]), out("images", "about", "about-01.jpg"));
 await writeJpeg(gradientSvg(1600, 1200, ["#b3aca0", "#8d867a"]), out("images", "about", "about-02.jpg"));
 
-// OG 이미지 (1200x630)
+// OG image (1200x630)
 const ogSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="#fdfcfa"/>
   <text x="614" y="308" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="92" letter-spacing="28" fill="#1a1a1a">SIMOU</text>
@@ -108,4 +108,4 @@ const ogSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"
 await sharp(Buffer.from(ogSvg)).png().toFile(out("og.png"));
 console.log("✓ public/og.png");
 
-console.log("\nplaceholder 이미지 생성 완료");
+console.log("\nPlaceholder images generated");

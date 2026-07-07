@@ -1,6 +1,6 @@
 /**
- * 상품·가격·안내사항 데이터 — blog.md의 실제 문구를 그대로 옮김.
- * 가격이나 조건이 바뀌면 이 파일만 수정하면 된다.
+ * Product/pricing/notice data — copied verbatim from blog.md.
+ * If prices or terms change, this is the only file to edit.
  */
 
 export const openEvent = {
@@ -12,7 +12,7 @@ export const openEvent = {
   bonus: "+ 모든 상품 20만원 상당 생화부케 제공",
 };
 
-/** 상품 공통 안내 */
+/** Shared product notes */
 export const productNotes = [
   "모든 상품에는 헤어, 메이크업 및 드레스가 포함되어 있지 않습니다. 오직 촬영만 포함된 금액입니다.",
   "촬영은 야외 위주로 진행되나 두 분이 원하시는 곳 어디든 촬영 장소가 될 수 있으며, 두 분의 무드에 맞는 장소로 상담 후 결정됩니다.",
@@ -20,7 +20,7 @@ export const productNotes = [
 
 export type Product = {
   id: string;
-  /** 영문 디스플레이용 이름 */
+  /** Name for English display */
   nameEn: string;
   name: string;
   badge?: string;
@@ -94,7 +94,7 @@ export const travelFee =
 
 export type NoticeGroup = { title: string; items: string[] };
 
-/** 촬영 관련 필독 사항 — Pricing 하단 아코디언 */
+/** Must-read shooting notices — accordion at the bottom of Pricing */
 export const notices: NoticeGroup[] = [
   {
     title: "예약 취소 및 환불 안내",
@@ -195,7 +195,7 @@ export const notices: NoticeGroup[] = [
 export const noticeAgreement =
   "예약 신청 시 위 안내사항에 모두 동의한 것으로 간주됩니다. 안내사항을 충분히 숙지하지 않아 발생하는 불이익에 대해서는 책임지지 않으며, 원활한 촬영 진행을 위해 반드시 확인 후 예약 부탁드립니다.";
 
-/** 예약 문의 양식 — Contact 페이지 */
+/** Booking enquiry form — Contact page */
 export const reservationForm = [
   "신랑 신부님 성함 연락처 :",
   "촬영 희망 날짜 (3개) :",

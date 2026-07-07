@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "공장식 촬영을 지양하고 두 분만의 자연스러운 순간을 담는 야외 웨딩스냅, 심오유의 촬영 철학을 소개합니다.",
 };
 
-/** blog.md의 안내 문구에서 추린 촬영 방식 3가지 */
+/** Three shooting-approach steps distilled from blog.md's notice copy */
 const approach = [
   {
     no: "01",
@@ -38,7 +38,7 @@ export default function AboutPage() {
       <PageTitle en="ABOUT" ko="심오유" />
 
       <div className="mx-auto max-w-2xl px-5">
-        {/* 브랜드 철학 */}
+        {/* Brand philosophy */}
         <Reveal className="text-center">
           <div className="space-y-5 text-base leading-9 text-ink md:text-lg md:leading-10">
             <p>{site.philosophy[0]}</p>
@@ -69,7 +69,7 @@ export default function AboutPage() {
           </p>
         </Reveal>
 
-        {/* 촬영 방식 */}
+        {/* How we work */}
         <section className="mt-20 md:mt-24">
           <h2 className="text-center font-serif text-xl font-light tracking-[0.25em] text-ink">
             HOW WE WORK

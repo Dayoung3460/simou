@@ -16,7 +16,7 @@ export const site = {
     { href: "/pricing", label: "Pricing", ko: "상품 안내" },
     { href: "/contact", label: "Contact", ko: "문의 및 예약" },
   ],
-  /** blog.md의 브랜드 철학 문구 — About/Home에서 사용 */
+  /** Brand philosophy copy from blog.md — used on About/Home */
   philosophy: [
     "심오유는 같은 장소, 비슷한 컨셉의 공장식 촬영을 지양합니다.",
     "두 분만이 가진 자연스러운 분위기와 가장 우리다운 순간을 담기 위해 노력합니다.",

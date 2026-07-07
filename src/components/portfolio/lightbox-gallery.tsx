@@ -7,7 +7,7 @@ import "yet-another-react-lightbox/styles.css";
 import NextJsImage from "@/components/portfolio/nextjs-image";
 import type { PortfolioItem } from "@/data/portfolio";
 
-/** 매소너리 그리드 + 클릭 시 라이트박스(스와이프·키보드 지원) */
+/** Masonry grid + click-to-open lightbox (swipe/keyboard support) */
 export default function LightboxGallery({ items }: { items: PortfolioItem[] }) {
   const [index, setIndex] = useState(-1);
 

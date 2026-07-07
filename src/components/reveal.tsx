@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-/** 스크롤 진입 시 한 번만 부드럽게 나타나는 래퍼 */
+/** Wrapper that fades in smoothly, once, when scrolled into view */
 export default function Reveal({
   children,
   className = "",

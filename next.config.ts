@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // 홈 디렉토리에 다른 lockfile이 있어 workspace root 추론이 어긋나는 것 방지
+  // Prevents workspace root from being misdetected because another lockfile exists in the home directory
   turbopack: {
     root: __dirname,
   },

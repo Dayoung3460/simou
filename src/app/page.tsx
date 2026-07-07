@@ -13,7 +13,7 @@ export default function HomePage() {
     <>
       <Hero />
 
-      {/* 브랜드 스테이트먼트 */}
+      {/* Brand statement */}
       <section className="px-5 py-24 md:py-36">
         <Reveal className="mx-auto max-w-xl text-center">
           <Image

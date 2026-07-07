@@ -34,7 +34,7 @@ export default function ContactPage() {
           </a>
         </Reveal>
 
-        {/* 예약 문의 양식 */}
+        {/* Booking enquiry form */}
         <Reveal className="mt-14 border border-line p-6 md:p-7">
           <div className="flex items-center justify-between gap-4">
             <h2 className="text-sm tracking-[0.15em] text-ink">예약 문의 양식</h2>

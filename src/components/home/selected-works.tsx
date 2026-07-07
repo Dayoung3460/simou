@@ -4,7 +4,7 @@ import Reveal from "@/components/reveal";
 import SectionTitle from "@/components/section-title";
 import { featuredItems } from "@/data/portfolio";
 
-/** 대표 작업 미리보기 — 모바일 스와이프에 자연스러운 가로 필름스트립 */
+/** Featured-work preview — a horizontal filmstrip that swipes naturally on mobile */
 export default function SelectedWorks() {
   return (
     <section className="py-6 md:py-10">

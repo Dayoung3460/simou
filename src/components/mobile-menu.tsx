@@ -11,12 +11,12 @@ export default function MobileMenu() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  // 페이지 이동 시 자동으로 닫기
+  // Auto-close on route change
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
-  // 메뉴가 열려 있는 동안 배경 스크롤 잠금
+  // Lock background scroll while the menu is open
   useEffect(() => {
     document.documentElement.style.overflow = open ? "hidden" : "";
     return () => {

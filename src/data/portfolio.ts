@@ -1,13 +1,13 @@
 import type { StaticImageData } from "next/image";
 
 /**
- * 포트폴리오 갤러리 데이터. (원본 사진은 img/, 웹용 리사이즈본은 public/images/)
+ * Portfolio gallery data. (Originals live in img/, web-resized copies in public/images/)
  *
- * 사진 추가/교체 방법:
- * 1. public/images/portfolio/<카테고리>/ 에 jpg 파일을 넣는다
- *    (기존 파일명 그대로 덮어쓰면 코드 수정 없이 교체됨)
- * 2. 새 파일이면 아래에 import 한 줄과 portfolioItems 항목을 추가한다
- *    (static import라서 width/height/blur가 자동 처리됨)
+ * How to add/replace photos:
+ * 1. Drop jpg files into public/images/portfolio/<category>/
+ *    (overwriting an existing filename replaces the photo with no code changes)
+ * 2. For a new file, add an import line below plus a portfolioItems entry
+ *    (static import means width/height/blur are handled automatically)
  */
 import field01 from "../../public/images/portfolio/field/field-01.jpg";
 import field02 from "../../public/images/portfolio/field/field-02.jpg";
@@ -42,7 +42,7 @@ export type PortfolioItem = {
   category: Exclude<CategorySlug, "all">;
 };
 
-/** '전체' 탭이 단조롭지 않도록 카테고리를 섞어서 배열 */
+/** Categories are interleaved so the 'All' tab doesn't feel monotonous */
 export const portfolioItems: PortfolioItem[] = [
   { id: "field-05", image: field05, alt: "들판에서 서로에게 기대어 입맞추는 신랑과 신부, 흑백", category: "field" },
   { id: "campus-01", image: campus01, alt: "붉은 벽돌 건물 앞에서 레드 부케를 든 신랑과 신부", category: "campus" },
@@ -61,7 +61,7 @@ export const portfolioItems: PortfolioItem[] = [
   { id: "field-04", image: field04, alt: "수풀 들판에 나란히 선 신랑과 신부", category: "field" },
 ];
 
-/** 홈 Selected Works 필름스트립에 노출할 작업 */
+/** Work shown in the home Selected Works filmstrip */
 const featuredIds = [
   "field-05",
   "campus-01",

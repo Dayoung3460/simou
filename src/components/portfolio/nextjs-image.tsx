@@ -12,8 +12,8 @@ import {
 } from "yet-another-react-lightbox";
 
 /**
- * yet-another-react-lightbox 공식 Next.js 예제 기반 —
- * 라이트박스 슬라이드도 next/image 최적화 파이프라인을 태운다.
+ * Based on yet-another-react-lightbox's official Next.js example —
+ * runs lightbox slides through the next/image optimisation pipeline too.
  */
 function isNextJsImage(slide: Slide): slide is SlideImage & StaticImageData {
   return (

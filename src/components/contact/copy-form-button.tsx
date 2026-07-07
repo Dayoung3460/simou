@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-/** 예약 양식을 클립보드에 복사 — 카카오톡에 붙여넣기 좋게 */
+/** Copies the booking form to the clipboard — handy for pasting into KakaoTalk */
 export default function CopyFormButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
 
@@ -12,7 +12,7 @@ export default function CopyFormButton({ text }: { text: string }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // clipboard 미지원 환경에서는 조용히 무시
+      // Fail silently where the Clipboard API isn't supported
     }
   }
 

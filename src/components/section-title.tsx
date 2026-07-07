@@ -21,7 +21,7 @@ export default function SectionTitle({
   );
 }
 
-/** 서브페이지 상단 공통 타이틀 — fixed 헤더 높이만큼 여백 포함 */
+/** Shared top title for subpages — includes padding to offset the fixed header */
 export function PageTitle({ en, ko }: { en: string; ko?: string }) {
   return (
     <div className="px-5 pb-12 pt-28 md:pb-16 md:pt-40">

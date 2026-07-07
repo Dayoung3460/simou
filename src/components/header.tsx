@@ -20,7 +20,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // 홈 히어로 위에서는 투명하게 사진 위에 얹고, 스크롤하면 배경을 깐다
+  // Sits transparently over the home hero, gains a background once scrolled
   const transparent = isHome && !scrolled;
 
   return (
