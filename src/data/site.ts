@@ -4,7 +4,7 @@ export const site = {
   tagline: "오래도록 마음에 남을 장면을 담습니다",
   description:
     "같은 장소, 비슷한 컨셉의 공장식 촬영을 지양합니다. 두 분만이 가진 자연스러운 분위기와 가장 우리다운 순간을 담는 야외 웨딩스냅, 심오유.",
-  url: "https://pioufleur.com",
+  url: "https://simouarchives.com",
   links: {
     kakao: "https://pf.kakao.com/_DnrxjX",
     instagram: "https://www.instagram.com/sim.o.u/",
