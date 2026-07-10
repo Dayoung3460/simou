@@ -25,7 +25,7 @@ export default function Hero() {
         className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-ink/30 to-transparent"
       />
 
-      <h1 className="sr-only">심오유 — 자연스러운 야외 웨딩스냅</h1>
+      <h1 className="sr-only">심오유 — SIMOU</h1>
       <div className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-7 pb-12 text-center md:pb-16">
         <p className="px-5 text-[15px] font-light tracking-wide text-white/95 md:text-lg">
           {site.tagline}

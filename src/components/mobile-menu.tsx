@@ -89,7 +89,7 @@ export default function MobileMenu({ light = false }: { light?: boolean }) {
 
             <div className="mb-10 mt-auto flex gap-6 text-sm text-muted">
               <a href={site.links.kakao} target="_blank" rel="noreferrer">
-                카카오톡 채널
+                KakaoTalk
               </a>
               <a href={site.links.instagram} target="_blank" rel="noreferrer">
                 Instagram

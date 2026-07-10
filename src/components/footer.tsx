@@ -15,7 +15,7 @@ export default function Footer() {
             rel="noreferrer"
             className="transition-colors hover:text-ink"
           >
-            카카오톡 채널
+            KakaoTalk
           </a>
           <a
             href={site.links.instagram}

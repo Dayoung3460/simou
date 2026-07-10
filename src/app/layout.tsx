@@ -16,7 +16,7 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "심오유 | 자연스러운 야외 웨딩스냅",
+    default: "심오유 | SIMOU",
     template: "%s | 심오유",
   },
   description: site.description,
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     siteName: site.name,
-    title: "심오유 | 자연스러운 야외 웨딩스냅",
+    title: "심오유 | SIMOU",
     description: site.description,
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "SIMOU — 심오유" }],
   },
