@@ -24,20 +24,14 @@ npm run screenshots   # mobile (390px) emulated screenshots + horizontal-overflo
 
 ## Photo Management
 
-- `img/` — folder for originals. Not used directly by the site and not committed to git (`.gitignore`)
-- `public/images/` — resized web copies actually served (long edge 2000px, EXIF stripped)
+Gallery photos (portfolio grid + home filmstrip) are managed by the site owner directly at `/admin` — no developer or code change needed. It's a password-gated admin area backed by Vercel Blob (both the image files and a small JSON metadata manifest), supporting upload, delete, and editing category/alt text/featured status per photo.
+
+- `/admin/login` — sign in with the shared `ADMIN_PASSWORD` (env var, set in Vercel + `.env.local`)
+- `/admin` — upload new photos (pick a category, select one or more files) and manage existing ones (category, alt text, "show on home" toggle, delete)
 - Gallery categories: `field` / `forest` (forest & park) / `campus` / `city`
-
-### Replacing a Photo
-
-Overwrite the existing file under `public/images/...` with the same filename — no code changes needed.
-
-### Adding a Photo
-
-1. Drop a web-resized jpg (long edge 2000px recommended) into `public/images/portfolio/<category>/`
-2. Add an import line + a `portfolioItems` entry in `src/data/portfolio.ts` (static import auto-handles width/height/blur)
-3. Write a short `alt` description of the photo (SEO/accessibility)
-4. To feature a photo in the home filmstrip, add its id to `featuredIds` in the same file
+- Uploaded photos are re-encoded server-side (EXIF stripped, resized to a 2000px long edge) — no manual pre-processing needed before upload
+- `img/` — folder for photo originals (kept out of git, not served directly)
+- `scripts/migrate-portfolio-to-blob.mjs` — one-off script used for the initial migration from static files to Blob; not part of the normal workflow
 
 ### Key Image Locations
 
