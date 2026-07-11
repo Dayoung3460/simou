@@ -4,7 +4,7 @@ import LightboxGallery from "@/components/portfolio/lightbox-gallery";
 import { PageTitle } from "@/components/section-title";
 import {
   categories,
-  portfolioItems,
+  getPortfolioItems,
   type CategorySlug,
 } from "@/data/portfolio";
 
@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   title: "포트폴리오",
   description: "심오유의 야외 웨딩스냅 포트폴리오 — 숲, 들판, 호수, 바다, 실내.",
 };
+
+// Always re-read the Blob-backed portfolio manifest at request time, never freeze it at build time
+export const dynamic = "force-dynamic";
 
 export default async function PortfolioPage({
   searchParams,
@@ -22,6 +25,7 @@ export default async function PortfolioPage({
   const active: CategorySlug = categories.some((c) => c.slug === category)
     ? (category as CategorySlug)
     : "all";
+  const portfolioItems = await getPortfolioItems();
   const items =
     active === "all"
       ? portfolioItems

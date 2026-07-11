@@ -4,11 +4,17 @@ import Hero from "@/components/home/hero";
 import SelectedWorks from "@/components/home/selected-works";
 import Reveal from "@/components/reveal";
 import SectionTitle from "@/components/section-title";
+import { getFeaturedItems } from "@/data/portfolio";
 import { openEvent } from "@/data/products";
 import { site } from "@/data/site";
 import brandMark from "../../public/images/brand-mark.jpg";
 
-export default function HomePage() {
+// Always re-read the Blob-backed portfolio manifest at request time, never freeze it at build time
+export const dynamic = "force-dynamic";
+
+export default async function HomePage() {
+  const featured = await getFeaturedItems();
+
   return (
     <>
       <Hero />
@@ -30,7 +36,7 @@ export default function HomePage() {
         </Reveal>
       </section>
 
-      <SelectedWorks />
+      <SelectedWorks items={featured} />
 
       {/* Open Event */}
       <section className="px-5 py-24 md:py-32">

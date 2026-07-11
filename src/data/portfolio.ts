@@ -1,29 +1,4 @@
-import type { StaticImageData } from "next/image";
-
-/**
- * Portfolio gallery data. (Originals live in img/, web-resized copies in public/images/)
- *
- * How to add/replace photos:
- * 1. Drop jpg files into public/images/portfolio/<category>/
- *    (overwriting an existing filename replaces the photo with no code changes)
- * 2. For a new file, add an import line below plus a portfolioItems entry
- *    (static import means width/height/blur are handled automatically)
- */
-import field01 from "../../public/images/portfolio/field/field-01.jpg";
-import field02 from "../../public/images/portfolio/field/field-02.jpg";
-import field03 from "../../public/images/portfolio/field/field-03.jpg";
-import field04 from "../../public/images/portfolio/field/field-04.jpg";
-import field05 from "../../public/images/portfolio/field/field-05.jpg";
-import forest01 from "../../public/images/portfolio/forest/forest-01.jpg";
-import forest02 from "../../public/images/portfolio/forest/forest-02.jpg";
-import forest03 from "../../public/images/portfolio/forest/forest-03.jpg";
-import forest04 from "../../public/images/portfolio/forest/forest-04.jpg";
-import campus01 from "../../public/images/portfolio/campus/campus-01.jpg";
-import campus02 from "../../public/images/portfolio/campus/campus-02.jpg";
-import campus03 from "../../public/images/portfolio/campus/campus-03.jpg";
-import campus04 from "../../public/images/portfolio/campus/campus-04.jpg";
-import city01 from "../../public/images/portfolio/city/city-01.jpg";
-import city02 from "../../public/images/portfolio/city/city-02.jpg";
+import { readManifest, type ManifestPhoto } from "@/lib/blob-store";
 
 export const categories = [
   { slug: "all", label: "전체" },
@@ -35,44 +10,28 @@ export const categories = [
 
 export type CategorySlug = (typeof categories)[number]["slug"];
 
-export type PortfolioItem = {
-  id: string;
-  image: StaticImageData;
-  alt: string;
-  category: Exclude<CategorySlug, "all">;
-};
+export type PortfolioItem = ManifestPhoto;
 
-/** Categories are interleaved so the 'All' tab doesn't feel monotonous */
-export const portfolioItems: PortfolioItem[] = [
-  { id: "field-05", image: field05, alt: "들판에서 서로에게 기대어 입맞추는 신랑과 신부, 흑백", category: "field" },
-  { id: "campus-01", image: campus01, alt: "붉은 벽돌 건물 앞에서 레드 부케를 든 신랑과 신부", category: "campus" },
-  { id: "forest-01", image: forest01, alt: "들꽃 핀 정원 길을 걷는 신랑과 신부", category: "forest" },
-  { id: "city-01", image: city01, alt: "빗속 자동차 앞에서의 흑백 시티 스냅", category: "city" },
-  { id: "field-01", image: field01, alt: "물가 수풀에 앉아 부케를 든 신부", category: "field" },
-  { id: "campus-03", image: campus03, alt: "빨간 공중전화 부스 앞의 신랑과 신부", category: "campus" },
-  { id: "forest-02", image: forest02, alt: "소나무 아래에서 베일이 바람에 날리는 신부", category: "forest" },
-  { id: "city-02", image: city02, alt: "도시의 밤, 도로 위에서 입맞추는 흑백 스냅", category: "city" },
-  { id: "field-02", image: field02, alt: "초원에서 손을 잡고 걷는 신랑과 신부", category: "field" },
-  { id: "campus-02", image: campus02, alt: "벽돌 캠퍼스를 배경으로 나란히 선 신랑과 신부", category: "campus" },
-  { id: "forest-03", image: forest03, alt: "공원에서 부케를 든 신부와 신랑의 투컷", category: "forest" },
-  { id: "field-03", image: field03, alt: "들꽃 부케를 들고 서로 기댄 블랙 드레스의 신부와 신랑", category: "field" },
-  { id: "campus-04", image: campus04, alt: "벽돌 건물 입구에서 마주 보는 신랑과 신부", category: "campus" },
-  { id: "forest-04", image: forest04, alt: "잔디밭에서 그린 톤 부케를 든 신랑", category: "forest" },
-  { id: "field-04", image: field04, alt: "수풀 들판에 나란히 선 신랑과 신부", category: "field" },
-];
+const uploadableSlugs: readonly Exclude<CategorySlug, "all">[] = categories
+  .map((c) => c.slug)
+  .filter((slug): slug is Exclude<CategorySlug, "all"> => slug !== "all");
+
+export function isUploadableCategory(
+  value: unknown,
+): value is Exclude<CategorySlug, "all"> {
+  return (
+    typeof value === "string" &&
+    (uploadableSlugs as readonly string[]).includes(value)
+  );
+}
+
+export async function getPortfolioItems(): Promise<PortfolioItem[]> {
+  const manifest = await readManifest();
+  return [...manifest.photos].sort((a, b) => a.order - b.order);
+}
 
 /** Work shown in the home Selected Works filmstrip */
-const featuredIds = [
-  "field-05",
-  "campus-01",
-  "forest-02",
-  "city-02",
-  "field-01",
-  "campus-03",
-  "forest-01",
-  "city-01",
-];
-
-export const featuredItems: PortfolioItem[] = featuredIds.flatMap((id) =>
-  portfolioItems.filter((item) => item.id === id),
-);
+export async function getFeaturedItems(): Promise<PortfolioItem[]> {
+  const items = await getPortfolioItems();
+  return items.filter((item) => item.featured);
+}
