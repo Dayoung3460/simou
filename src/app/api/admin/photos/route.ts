@@ -12,7 +12,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 
-  const formData = await request.formData();
+  let formData;
+  try {
+    formData = await request.formData();
+  } catch {
+    // Typically a body truncated by a size limit (dev proxy buffer / Vercel's 4.5MB function cap)
+    return NextResponse.json({ error: "request body too large or malformed" }, { status: 413 });
+  }
   const category = formData.get("category");
   if (!isUploadableCategory(category)) {
     return NextResponse.json({ error: "invalid category" }, { status: 400 });
