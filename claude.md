@@ -54,11 +54,12 @@ Photos are the star. Keep the UI minimal so it never competes with the photos, a
 
 ## Deployment & Domain
 
-- Live at `https://pioufleur.com` — Vercel project `simou` under team scope `da-youngs-projects-a44f7667`. `www.pioufleur.com` 308-redirects to the apex (configured in the Vercel dashboard, not in code)
-- `src/data/site.ts`'s `url` field is the source of truth for the domain — it feeds `sitemap.ts`/`robots.ts`, so update it there (and nowhere else) if the domain ever changes
+- Canonical domain is `https://simouarchives.com` — Vercel project `simou` under team scope `da-youngs-projects-a44f7667`. `src/data/site.ts`'s `url` field is the source of truth — it feeds `sitemap.ts`/`robots.ts`, so update it there (and nowhere else) if the domain ever changes again
+- `pioufleur.com` is a separate, previously-purchased domain still attached to the same `simou` project and still serving the site — it does **not** redirect to `simouarchives.com` (deliberate; the user only wanted the canonical URL switched, not the old domain retired)
+- `www.simouarchives.com` 308-redirects to the apex (configured via the *project's* Settings → Domains → edit `www.simouarchives.com` → Redirect to another domain — not the team-level Domains registrar page, which only shows DNS/nameservers)
 - Git integration is connected (`vercel git connect`): pushing to `main` auto-deploys to production; PRs get preview deployments
-- DNS stays at Cloudflare (nameservers were **not** moved to Vercel) — only the A/CNAME record values point at Vercel, with the proxy disabled (DNS only / grey cloud, not orange). Don't assume record values — always confirm the exact required A/CNAME target with `vercel domains inspect <domain>`, since Vercel can issue account-specific CNAME targets
-- The domain previously lived on a different Vercel project (`piou-fleur`, same account) and was reassigned with `vercel domains add <domain> <project> --force`. Same trick applies if it ever needs to move again — no DNS changes are needed as long as the domain already points at Vercel's edge network
+- DNS for both domains stays at Cloudflare (nameservers were **not** moved to Vercel) — only A record values point at Vercel, with the proxy disabled (DNS only / grey cloud, not orange — Cloudflare will nag about "Proxying is required for most security/performance features"; ignore it, proxying breaks Vercel's own TLS termination). Don't assume record values — always confirm the exact required A/CNAME target with `vercel domains inspect <domain>`, since Vercel can issue account-specific targets
+- To reassign a domain from one Vercel project to another in the same account: `vercel domains add <domain> <project> --force` — no DNS changes needed as long as the domain already points at Vercel's edge network
 
 ## Language Conventions
 
