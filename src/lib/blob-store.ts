@@ -29,7 +29,12 @@ const MANIFEST_PATHNAME = "portfolio/manifest.json";
 // occasionally challenging the anonymous public fetch instead of serving the blob, and public CDN
 // edge-cache staleness after a write (`useCache: false` only takes effect for private blobs,
 // forcing a read straight from origin storage — this eliminates prior read-after-write lag too).
-const MANIFEST_BLOB_TOKEN = process.env.MANIFEST_BLOB_READ_WRITE_TOKEN;
+//
+// Authenticated via OIDC (storeId + the ambient VERCEL_OIDC_TOKEN) rather than the static
+// MANIFEST_BLOB_READ_WRITE_TOKEN — Vercel auto-connects this store's project via OIDC, and an
+// explicit `token` would silently take precedence over that, defeating the point of being able to
+// revoke the static token.
+const MANIFEST_BLOB_STORE_ID = process.env.MANIFEST_BLOB_STORE_ID;
 
 const emptyManifest: Manifest = { version: 1, photos: [] };
 
@@ -38,7 +43,7 @@ async function readManifestStrict(): Promise<Manifest> {
   const result = await get(MANIFEST_PATHNAME, {
     access: "private",
     useCache: false,
-    token: MANIFEST_BLOB_TOKEN,
+    storeId: MANIFEST_BLOB_STORE_ID,
   });
   if (!result) return emptyManifest;
   return (await new Response(result.stream).json()) as Manifest;
@@ -102,6 +107,6 @@ export async function writeManifest(manifest: Manifest): Promise<void> {
     addRandomSuffix: false,
     allowOverwrite: true,
     contentType: "application/json",
-    token: MANIFEST_BLOB_TOKEN,
+    storeId: MANIFEST_BLOB_STORE_ID,
   });
 }
