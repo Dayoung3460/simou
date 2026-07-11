@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  // The upload route loads sharp at runtime; on Vercel the traced function bundle missed the
+  // linux-x64 native binary (sharp then silently fell back to @img/sharp-wasm32, whose
+  // SharedArrayBuffer-backed output @vercel/blob's fetch rejects), so include it explicitly
+  outputFileTracingIncludes: {
+    "/api/admin/photos": [
+      "node_modules/@img/sharp-linux-x64/**",
+      "node_modules/@img/sharp-libvips-linux-x64/**",
+    ],
+  },
   experimental: {
     // proxy.ts matches /api/admin/*, which makes Next buffer request bodies with a 10MB cap by
     // default — silently truncating admin photo uploads. Only a safety net for originals the
